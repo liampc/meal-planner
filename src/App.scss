@@ -14,5 +14,22 @@ body {
     padding: 0;
     font-family: $font;
     line-height: 1.5;
-    
+    min-height: 100vh;
+    color: $VeryLightBlue;
+    background-image: linear-gradient($DarkBlueGreen, $BlueGreen);
+    background-repeat: no-repeat;
 }
+
+.container {
+    margin: 0 auto;
+    max-width: 70rem;
+    padding: 1rem;
+
+}
+
+
+h1, h1, h3 {
+    font-weight: $font-reg;
+    margin: 0;
+}
+

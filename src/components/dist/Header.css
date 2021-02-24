@@ -1,0 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500&display=swap");
+.header {
+  border-bottom: 1px solid #ECF4F3;
+}
+
+.header__title {
+  color: #EE6F57;
+  text-align: center;
+}
+/*# sourceMappingURL=Header.css.map */

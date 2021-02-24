@@ -1,0 +1,19 @@
+@import '../../styles/abstracts';
+
+
+.header {
+
+    border-bottom: 1px solid $VeryLightBlue;
+    &
+
+    &__title {
+        text-align: center;
+        padding: 0 2.5rem;
+
+        @include breakpoint-up('large'){
+            text-align: left;
+        }
+    }
+
+
+}
