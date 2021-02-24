@@ -6,7 +6,34 @@ import "react-datepicker/dist/react-datepicker.css";
 function Main(){
 
     const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
+    const [endDate, setEndDate] = useState('')
+
+
+     // returns the end date given the starting date and the number of days 
+    function getNewDate(date, days) {
+        let hours = days * 24
+        let dateStart = new Date(date)
+        let dateEnd = (dateStart.getTime() + (hours * 60 * 60 * 1000))
+        dateEnd = new Date(dateEnd)
+        return dateEnd
+     }
+
+    useEffect(() => {
+
+        const getEndDate = () => {
+            if (endDate === ''){
+                setEndDate(new Date(getNewDate(startDate, 7)))
+            }
+        }
+
+        window.addEventListener('load', getEndDate)
+
+        return () => {
+            window.removeEventListener('load', getEndDate)
+        }
+
+    }, [startDate,endDate])
+
 
     return (
         <main className="container">
