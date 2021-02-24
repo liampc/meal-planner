@@ -1,0 +1,40 @@
+@import '../../styles/abstracts';
+
+
+.card {
+    background-color: $VeryLightBlue;
+    color: black;
+    flex: 1;
+    margin-bottom: 1rem;
+    max-height: 11rem;
+    overflow-y: hidden;
+    
+
+    @include breakpoint-up('large'){
+        max-width: 16rem;
+        min-height: 35rem;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+    }
+
+    &__header {
+        background-color: $BlueGreen;
+        color: $VeryLightBlue;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        
+    }
+
+    &__subheader {
+        margin: 0 auto;
+        width: 95%;
+        padding: 5px;
+        border-bottom: 1px solid $Orange;
+        
+    }
+
+    &__list {
+
+    }
+}

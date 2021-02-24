@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import './_main.scss';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import Card from './Card'
 
 function Main(){
 
@@ -91,7 +92,10 @@ function Main(){
                     <span className="endDate increment"></span>
                 </div>
             </div>
-          
+            <div className="planner">
+                <Card />
+                <Card />
+            </div>
             
         </main>
     )

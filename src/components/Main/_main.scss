@@ -80,6 +80,16 @@
 
 
 
+.planner {
+    margin-top: 2.75rem;
+    display: flex;
+    flex-direction: column;
 
+    @include breakpoint-up('large'){
+        flex-direction: row;
+    }
+
+
+}
 
 
