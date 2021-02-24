@@ -1,0 +1,18 @@
+@import '../../styles/abstracts';
+
+
+.react-datepicker__input-container {
+
+    background-color: $DarkBlueGreen;
+    padding: 0.5rem 1rem;
+
+    input {
+        background-color: $DarkBlueGreen;
+        font-family: $font;
+        color: $VeryLightBlue;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+    }
+}
+
