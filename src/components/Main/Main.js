@@ -26,10 +26,22 @@ function Main(){
             }
         }
 
+        const decrementDate = () => {
+            setStartDate(new Date(getNewDate(startDate, -1)))
+        }
+
+        const incrementDate = () => {
+            setStartDate(new Date(getNewDate(startDate, 1)))
+        }
+
         window.addEventListener('load', getEndDate)
+        document.querySelector('#left-startDate').addEventListener('click', decrementDate)
+        document.querySelector('#right-startDate').addEventListener('click', incrementDate)
 
         return () => {
             window.removeEventListener('load', getEndDate)
+            document.querySelector('#left-startDate').removeEventListener('click', decrementDate)
+            document.querySelector('#right-startDate').removeEventListener('click', incrementDate)
         }
 
     }, [startDate,endDate])
@@ -39,9 +51,9 @@ function Main(){
         <main className="container">
             <div className="date">
                 <div className="date__picker">
-                    <span></span>
+                    <span id="left-startDate"></span>
                     <DatePicker selected={startDate} onChange={date => setStartDate(date)}  dateFormat={'MMM dd, yyyy'}/>
-                    <span></span>
+                    <span id="right-startDate"></span>
                 </div>
                 <div className="date__picker">
                     <span></span>
