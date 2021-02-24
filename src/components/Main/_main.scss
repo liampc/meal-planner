@@ -1,18 +1,85 @@
 @import '../../styles/abstracts';
 
 
-.react-datepicker__input-container {
 
-    background-color: $DarkBlueGreen;
-    padding: 0.5rem 1rem;
 
-    input {
-        background-color: $DarkBlueGreen;
-        font-family: $font;
-        color: $VeryLightBlue;
-        border: none;
-        text-align: center;
-        cursor: pointer;
+.date {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+
+    @include breakpoint-up('medium'){
+        flex-direction: row;
+        justify-content: center;
     }
+
+    @include breakpoint-up('large'){
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+
+    &__picker {
+
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        background-color: $DarkBlueGreen;
+        max-width: 20rem;
+        margin-bottom: 0.5rem;
+
+        @include breakpoint-up('large'){
+            margin: 0 1rem;
+           
+            
+        }
+
+        span {
+            height: 4rem;
+            width: 4rem;
+            background-image: url('../../assets/images/arrow.png');
+            background-repeat: no-repeat;
+            background-size: 40%;
+            background-position: 50% 50%;
+            cursor: pointer;
+        
+        }
+
+
+        span:last-of-type {
+            transform: rotate(180deg);
+        }
+   
+    }
+
 }
+
+
+.react-datepicker {
+
+
+    &__input-container {
+
+        background-color: $DarkBlueGreen;
+
+        input {
+            margin: 1rem;
+            text-align: center;
+            background-color: $DarkBlueGreen;
+            font-family: $font;
+            font-size: 1.25rem;
+            color: $VeryLightBlue;
+            border: none;
+            cursor: pointer;
+        }
+        
+    }
+
+}
+
+
+
+
+
 
