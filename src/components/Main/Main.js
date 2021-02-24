@@ -26,22 +26,52 @@ function Main(){
             }
         }
 
-        const decrementDate = () => {
-            setStartDate(new Date(getNewDate(startDate, -1)))
+        const decrementDate = (e) => {
+            let el = e.target.classList
+
+            if (el.contains('startDate') ){
+                setStartDate(new Date(getNewDate(startDate, -1)))
+            } else if (el.contains('endDate')){
+                setEndDate(new Date(getNewDate(endDate, -1)))
+            }
+           
         }
 
-        const incrementDate = () => {
-            setStartDate(new Date(getNewDate(startDate, 1)))
+        const incrementDate = (e) => {
+            let el = e.target.classList
+
+            if (el.contains('startDate') ){
+                setStartDate(new Date(getNewDate(startDate, 1)))
+            } else if (el.contains('endDate')){
+                setEndDate(new Date(getNewDate(endDate, 1)))
+            }
+           
         }
 
         window.addEventListener('load', getEndDate)
-        document.querySelector('#left-startDate').addEventListener('click', decrementDate)
-        document.querySelector('#right-startDate').addEventListener('click', incrementDate)
+
+        let minus = document.querySelectorAll('.decrement')
+            minus.forEach(el => {
+                el.addEventListener('click', decrementDate)
+            })
+        
+        let add = document.querySelectorAll('.increment')
+            add.forEach(el => {
+                el.addEventListener('click', incrementDate)
+            })
+       
 
         return () => {
             window.removeEventListener('load', getEndDate)
-            document.querySelector('#left-startDate').removeEventListener('click', decrementDate)
-            document.querySelector('#right-startDate').removeEventListener('click', incrementDate)
+
+            minus.forEach(el => {
+                el.removeEventListener('click', decrementDate)
+            })
+
+            add.forEach(el => {
+                el.removeEventListener('click', incrementDate)
+            })
+            
         }
 
     }, [startDate,endDate])
@@ -51,14 +81,14 @@ function Main(){
         <main className="container">
             <div className="date">
                 <div className="date__picker">
-                    <span id="left-startDate"></span>
+                    <span className="startDate decrement"></span>
                     <DatePicker selected={startDate} onChange={date => setStartDate(date)}  dateFormat={'MMM dd, yyyy'}/>
-                    <span id="right-startDate"></span>
+                    <span className="startDate increment"></span>
                 </div>
                 <div className="date__picker">
-                    <span></span>
+                    <span className="endDate decrement"></span>
                     <DatePicker selected={endDate} onChange={date => setEndDate(date)}  dateFormat={'MMM dd, yyyy'}/>
-                    <span></span>
+                    <span className="endDate increment"></span>
                 </div>
             </div>
           
