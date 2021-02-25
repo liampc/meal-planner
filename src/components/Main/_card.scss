@@ -9,9 +9,11 @@
     max-height: 11rem;
     overflow-y: hidden;
     
+    
 
     @include breakpoint-up('large'){
-        max-width: 16rem;
+        flex: 1;
+        min-width: 270px;
         min-height: 35rem;
         margin-bottom: 1rem;
         margin-right: 1rem;
