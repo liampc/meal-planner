@@ -84,6 +84,7 @@
     margin-top: 2.75rem;
     display: flex;
     flex-direction: column;
+    overflow-x: scroll;
 
     @include breakpoint-up('large'){
         flex-direction: row;

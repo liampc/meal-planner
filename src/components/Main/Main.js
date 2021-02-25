@@ -3,12 +3,14 @@ import './_main.scss';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Card from './Card'
+import uniqid from 'uniqid'
 
 function Main(){
 
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState('')
-
+    const [duration, setDuration] = useState([...Array(7).keys()])
+    
 
      // returns the end date given the starting date and the number of days 
     function getNewDate(date, days) {
@@ -19,11 +21,17 @@ function Main(){
         return dateEnd
      }
 
+     function getDateString(date){
+        let newDate = new Date(date)
+        let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct', 'Nov', 'Dec']
+        return `${months[newDate.getMonth()]} ${newDate.getDate()}, ${newDate.getFullYear()}`
+     }
+
     useEffect(() => {
 
         const getEndDate = () => {
             if (endDate === ''){
-                setEndDate(new Date(getNewDate(startDate, 7)))
+                setEndDate(new Date(getNewDate(startDate, 6)))
             }
         }
 
@@ -93,8 +101,10 @@ function Main(){
                 </div>
             </div>
             <div className="planner">
-                <Card />
-                <Card />
+                {duration.map(num => {
+                    return <Card key={uniqid()} startDate={getDateString(getNewDate(startDate, num))} />
+                })}
+               
             </div>
             
         </main>
