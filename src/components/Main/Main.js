@@ -9,7 +9,8 @@ function Main(){
 
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState('')
-    const [duration, setDuration] = useState([...Array(7).keys()])
+    const [numDays, setNumDays] = useState(7)
+    const [duration, setDuration] = useState([...Array(numDays).keys()])
     
 
      // returns the end date given the starting date and the number of days 
@@ -40,10 +41,16 @@ function Main(){
 
             if (el.contains('startDate') ){
                 setStartDate(new Date(getNewDate(startDate, -1)))
+                setNumDays(prevState => prevState + 1)
+                setDuration([...Array(numDays + 1).keys()])
+               
             } else if (el.contains('endDate')){
                 setEndDate(new Date(getNewDate(endDate, -1)))
+                setNumDays(prevState => prevState - 1)
+                setDuration([...Array(numDays - 1).keys()])
             }
            
+            
         }
 
         const incrementDate = (e) => {
@@ -51,8 +58,12 @@ function Main(){
 
             if (el.contains('startDate') ){
                 setStartDate(new Date(getNewDate(startDate, 1)))
+                setNumDays(prevState => prevState - 1)
+                setDuration([...Array(numDays - 1).keys()])
             } else if (el.contains('endDate')){
                 setEndDate(new Date(getNewDate(endDate, 1)))
+                setNumDays(prevState => prevState + 1)
+                setDuration([...Array(numDays + 1).keys()])
             }
            
         }
@@ -83,7 +94,7 @@ function Main(){
             
         }
 
-    }, [startDate,endDate])
+    }, [startDate,endDate, numDays, duration])
 
 
     return (
@@ -102,7 +113,7 @@ function Main(){
             </div>
             <div className="planner">
                 {duration.map(num => {
-                    return <Card key={uniqid()} startDate={getDateString(getNewDate(startDate, num))} />
+                    return <Card key={uniqid()} startDate={getDateString(getNewDate(startDate, num ))} />
                 })}
                
             </div>
