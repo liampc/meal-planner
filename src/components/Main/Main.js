@@ -8,7 +8,6 @@ import uniqid from 'uniqid'
 function Main(){
 
     const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState('')
     const [numDays, setNumDays] = useState(7)
     const [duration, setDuration] = useState([...Array(numDays).keys()])
     
@@ -30,27 +29,15 @@ function Main(){
 
     useEffect(() => {
 
-        const getEndDate = () => {
-            if (endDate === ''){
-                setEndDate(new Date(getNewDate(startDate, 6)))
-            }
-        }
 
         const decrementDate = (e) => {
             let el = e.target.classList
 
             if (el.contains('startDate') ){
                 setStartDate(new Date(getNewDate(startDate, -1)))
-                setNumDays(prevState => prevState + 1)
-                setDuration([...Array(numDays + 1).keys()])
                
-            } else if (el.contains('endDate')){
-                setEndDate(new Date(getNewDate(endDate, -1)))
-                setNumDays(prevState => prevState - 1)
-                setDuration([...Array(numDays - 1).keys()])
             }
            
-            
         }
 
         const incrementDate = (e) => {
@@ -58,17 +45,11 @@ function Main(){
 
             if (el.contains('startDate') ){
                 setStartDate(new Date(getNewDate(startDate, 1)))
-                setNumDays(prevState => prevState - 1)
-                setDuration([...Array(numDays - 1).keys()])
-            } else if (el.contains('endDate')){
-                setEndDate(new Date(getNewDate(endDate, 1)))
-                setNumDays(prevState => prevState + 1)
-                setDuration([...Array(numDays + 1).keys()])
             }
            
         }
 
-        window.addEventListener('load', getEndDate)
+      
 
         let minus = document.querySelectorAll('.decrement')
             minus.forEach(el => {
@@ -82,7 +63,7 @@ function Main(){
        
 
         return () => {
-            window.removeEventListener('load', getEndDate)
+           
 
             minus.forEach(el => {
                 el.removeEventListener('click', decrementDate)
@@ -94,7 +75,7 @@ function Main(){
             
         }
 
-    }, [startDate,endDate, numDays, duration])
+    }, [startDate, numDays, duration])
 
 
     return (
@@ -104,11 +85,6 @@ function Main(){
                     <span className="startDate decrement"></span>
                     <DatePicker selected={startDate} onChange={date => setStartDate(date)}  dateFormat={'MMM dd, yyyy'}/>
                     <span className="startDate increment"></span>
-                </div>
-                <div className="date__picker">
-                    <span className="endDate decrement"></span>
-                    <DatePicker selected={endDate} onChange={date => setEndDate(date)}  dateFormat={'MMM dd, yyyy'}/>
-                    <span className="endDate increment"></span>
                 </div>
             </div>
             <div className="planner">
