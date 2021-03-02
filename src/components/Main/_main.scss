@@ -25,9 +25,10 @@
         margin: 0 auto;
         display: flex;
         justify-content: center;
-        background-color: $DarkBlueGreen;
+        background-color: $Orange;
         max-width: 20rem;
         margin-bottom: 0.5rem;
+        border-bottom: 1px solid $VeryLightBlue;
 
         @include breakpoint-up('large'){
             margin: 0 1rem;
@@ -61,15 +62,15 @@
 
     &__input-container {
 
-        background-color: $DarkBlueGreen;
+        background-color: $Orange;
 
         input {
             margin: 1rem;
             text-align: center;
-            background-color: $DarkBlueGreen;
+            background-color: $Orange;
             font-family: $font;
             font-size: 1.25rem;
-            color: $VeryLightBlue;
+            color:white;
             border: none;
             cursor: pointer;
         }
@@ -85,7 +86,7 @@
     display: flex;
     flex-direction: column;
     overflow-x: scroll;
-    box-shadow: 30px -20px 40px #00000042;
+    // box-shadow: 30px -20px 40px #00000042;
 
     @include breakpoint-up('large'){
         flex-direction: row;
