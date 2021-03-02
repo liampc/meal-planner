@@ -28,6 +28,31 @@ function Main(){
         return `${months[newDate.getMonth()]} ${newDate.getDate()}, ${newDate.getFullYear()}`
      }
 
+     function getDateDiff(start, end){
+         let s = new Date(start).getTime()
+         let e = new Date(end).getTime()
+
+         let diff = Math.floor((e - s) / 1000 / 60 / 60 / 24)
+         return diff
+     }
+
+
+     function handleChange(date, type){
+         let diff;
+        if (type === 'startDate'){
+            setStartDate(date)
+            diff = getDateDiff(date, endDate) + 2
+            setNumDays(diff)
+            setDuration([...Array(diff).keys()])
+        } else {
+            setEndDate(date)
+            diff = getDateDiff(startDate, date) + 2
+            setNumDays(diff)
+            setDuration([...Array(diff).keys()])
+        }
+        console.log(duration)
+     }
+
     useEffect(() => {
 
         const getEndDate = () => {
@@ -70,6 +95,8 @@ function Main(){
 
         window.addEventListener('load', getEndDate)
 
+
+
         let minus = document.querySelectorAll('.decrement')
             minus.forEach(el => {
                 el.addEventListener('click', decrementDate)
@@ -102,12 +129,12 @@ function Main(){
             <div className="date">
                 <div className="date__picker">
                     <span className="startDate decrement"></span>
-                    <DatePicker selected={startDate} onChange={date => setStartDate(date)}  dateFormat={'MMM dd, yyyy'}/>
+                    <DatePicker className="startDate" selected={startDate} onChange={(date) => handleChange(date, 'startDate')}  dateFormat={'MMM dd, yyyy'}/>
                     <span className="startDate increment"></span>
                 </div>
                 <div className="date__picker">
                     <span className="endDate decrement"></span>
-                    <DatePicker selected={endDate} onChange={date => setEndDate(date)}  dateFormat={'MMM dd, yyyy'}/>
+                    <DatePicker className="endDate" selected={endDate} onChange={(date) => handleChange(date, 'endDate')}  dateFormat={'MMM dd, yyyy'}/>
                     <span className="endDate increment"></span>
                 </div>
             </div>
