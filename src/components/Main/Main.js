@@ -51,27 +51,17 @@ function Main(){
 
       
 
-        let minus = document.querySelectorAll('.decrement')
-            minus.forEach(el => {
-                el.addEventListener('click', decrementDate)
-            })
-        
-        let add = document.querySelectorAll('.increment')
-            add.forEach(el => {
-                el.addEventListener('click', incrementDate)
-            })
+        let minus = document.querySelector('.decrement')
+        minus.addEventListener('click', decrementDate)
        
+        
+        let add = document.querySelector('.increment')
+        add.addEventListener('click', incrementDate)
+
 
         return () => {
-           
-
-            minus.forEach(el => {
-                el.removeEventListener('click', decrementDate)
-            })
-
-            add.forEach(el => {
-                el.removeEventListener('click', incrementDate)
-            })
+            minus.removeEventListener('click', decrementDate)
+            add.removeEventListener('click', incrementDate)
             
         }
 
