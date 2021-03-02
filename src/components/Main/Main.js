@@ -24,7 +24,8 @@ function Main(){
      function getDateString(date){
         let newDate = new Date(date)
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct', 'Nov', 'Dec']
-        return `${months[newDate.getMonth()]} ${newDate.getDate()}, ${newDate.getFullYear()}`
+        let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+        return `${days[newDate.getDay()]} - ${months[newDate.getMonth()]} ${newDate.getDate()}`
      }
 
     useEffect(() => {
