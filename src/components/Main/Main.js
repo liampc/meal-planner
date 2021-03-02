@@ -50,7 +50,7 @@ function Main(){
             setNumDays(diff)
             setDuration([...Array(diff).keys()])
         }
-        console.log(duration)
+        console.log(diff)
      }
 
     useEffect(() => {
