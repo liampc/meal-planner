@@ -5,9 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import Card from './Card'
 import uniqid from 'uniqid'
 
+
 function Main(){
 
     const [startDate, setStartDate] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(new Date())
     const [numDays, setNumDays] = useState(7)
     const [duration, setDuration] = useState([...Array(numDays).keys()])
     
@@ -71,6 +73,7 @@ function Main(){
 
     return (
         <main className="container">
+            <div></div>
             <div className="date">
                 <div className="date__picker">
                     <span className="startDate decrement"></span>
@@ -82,9 +85,26 @@ function Main(){
                 {duration.map(num => {
                     return <Card key={uniqid()} startDate={getDateString(getNewDate(startDate, num ))} />
                 })}
-               
+              
             </div>
-            
+            <form className="form container">
+                <h2>Add Food</h2>
+                <div className="form__inputs">
+                <DatePicker className="form__date--white" selected={selectedDate} onChange={date => setSelectedDate(date)}  dateFormat={'MMM dd, yyyy'}/>
+                    <input className="form__input" type="text" placeholder="Food"/>
+                    <select className="form__select">
+                        <option>Breakfast</option>
+                        <option>Lunch</option>
+                        <option>Dinner</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div className="form__buttons">
+                    <button className="form__button">+</button>
+                    <button className="form__button">-</button>
+                </div>
+               
+            </form>
         </main>
     )
 }

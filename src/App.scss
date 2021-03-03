@@ -17,7 +17,7 @@ body {
     min-height: 100vh;
     color: $VeryLightBlue;
     background-color: $Orange;
-    // background-image: linear-gradient($Orange, $Peach);
+    // overflow-y: hidden; //temp
  
 }
 
@@ -34,3 +34,7 @@ h1, h2, h3 {
     margin: 0;
 }
 
+
+input select option {
+    font-family: $font;
+}
