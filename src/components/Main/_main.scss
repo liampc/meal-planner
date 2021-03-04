@@ -97,7 +97,7 @@
 
 
 .form {
-    display: none;
+    // display: none;
     position: absolute;
     z-index: 1;
     top: 30%;
@@ -113,6 +113,10 @@
     padding-top: 2rem;
 
 
+    @include breakpoint-up('large'){
+        width: auto;
+        height: auto;
+    }
   
 
     h2 {
