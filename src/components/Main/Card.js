@@ -8,7 +8,7 @@ function Card(props){
         <div className="card">
             <div className="card__header">
                 <h2>{props.startDate}</h2>
-                <span>+</span>
+                <span onClick={(e,) => props.handleClick(e, props.startDate)}>+</span>
             </div>
             <h3 className="card__subheader">Breakfast</h3>
             <div className="card__list">

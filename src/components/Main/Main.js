@@ -30,6 +30,13 @@ function Main(){
         return `${days[newDate.getDay()]} - ${months[newDate.getMonth()]} ${newDate.getDate()}`
      }
 
+
+     function showForm(e, date){
+         console.log(e.target, date )
+     }
+
+
+
     useEffect(() => {
 
 
@@ -83,7 +90,11 @@ function Main(){
             </div>
             <div className="planner">
                 {duration.map(num => {
-                    return <Card key={uniqid()} startDate={getDateString(getNewDate(startDate, num ))} />
+                    return <Card 
+                            key={uniqid()} 
+                            startDate={getDateString(getNewDate(startDate, num ))} 
+                            handleClick={showForm}
+                        />
                 })}
               
             </div>
