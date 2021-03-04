@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Card from './Card'
 import uniqid from 'uniqid'
+import Form from './Form'
 
 
 function Main(){
@@ -12,7 +13,7 @@ function Main(){
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [numDays, setNumDays] = useState(7)
     const [duration, setDuration] = useState([...Array(numDays).keys()])
-    
+    const [isClicked, setIsClicked] = useState(false)
 
      // returns the end date given the starting date and the number of days 
     function getNewDate(date, days) {
@@ -27,12 +28,15 @@ function Main(){
         let newDate = new Date(date)
         let months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep','Oct', 'Nov', 'Dec']
         let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-        return `${days[newDate.getDay()]} - ${months[newDate.getMonth()]} ${newDate.getDate()}`
+        return `${days[newDate.getDay()]} - ${months[newDate.getMonth()]} ${newDate.getDate()}, ${newDate.getFullYear()}`
      }
 
 
-     function showForm(e, date){
+     let showForm = (e, date) => {
          console.log(e.target, date )
+         setSelectedDate(new Date(date))
+         setIsClicked(!isClicked)
+         
      }
 
 
@@ -98,24 +102,10 @@ function Main(){
                 })}
               
             </div>
-            <form className="form container">
-                <h2>Add Food</h2>
-                <div className="form__inputs">
-                <DatePicker className="form__date--white" selected={selectedDate} onChange={date => setSelectedDate(date)}  dateFormat={'MMM dd, yyyy'}/>
-                    <input className="form__input" type="text" placeholder="Food"/>
-                    <select className="form__select">
-                        <option>Breakfast</option>
-                        <option>Lunch</option>
-                        <option>Dinner</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div className="form__buttons">
-                    <button className="form__button">+</button>
-                    <button className="form__button">-</button>
-                </div>
-               
-            </form>
+            { 
+                isClicked ? <Form selectedDate={selectedDate} setSelectedDate={setSelectedDate}/> : ''
+            }
+           
         </main>
     )
 }
